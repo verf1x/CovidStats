@@ -67,8 +67,8 @@ namespace CovidStats.ViewModels
 
         private async Task GetCollection()
         {
-            var _serivce = new StatsService();
-            var summary = await _serivce.GetData();
+            var serivce = new StatsService();
+            var summary = await serivce.GetData();
             var countries = summary.Countries;
 
             Countries = new ObservableCollection<CountryModel>(countries.Where(x => !string.IsNullOrWhiteSpace(x.Country)));
