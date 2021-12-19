@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CovidStats", "CovidStats\CovidStats.csproj", "{5F382E5B-3693-4CF1-8C89-3CCFD994DBBA}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CovidStatsSetup", "CovidStatsSetup\CovidStatsSetup.vdproj", "{4A9A9BC2-FC56-423A-91F6-448312DA0349}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F382E5B-3693-4CF1-8C89-3CCFD994DBBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F382E5B-3693-4CF1-8C89-3CCFD994DBBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F382E5B-3693-4CF1-8C89-3CCFD994DBBA}.Debug|x64.ActiveCfg = Debug|x64
+		{5F382E5B-3693-4CF1-8C89-3CCFD994DBBA}.Debug|x64.Build.0 = Debug|x64
+		{5F382E5B-3693-4CF1-8C89-3CCFD994DBBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F382E5B-3693-4CF1-8C89-3CCFD994DBBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F382E5B-3693-4CF1-8C89-3CCFD994DBBA}.Release|x64.ActiveCfg = Release|x64
+		{5F382E5B-3693-4CF1-8C89-3CCFD994DBBA}.Release|x64.Build.0 = Release|x64
+		{4A9A9BC2-FC56-423A-91F6-448312DA0349}.Debug|Any CPU.ActiveCfg = Debug
+		{4A9A9BC2-FC56-423A-91F6-448312DA0349}.Debug|x64.ActiveCfg = Debug
+		{4A9A9BC2-FC56-423A-91F6-448312DA0349}.Release|Any CPU.ActiveCfg = Release
+		{4A9A9BC2-FC56-423A-91F6-448312DA0349}.Release|x64.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {26AB1109-D3D2-4B2B-88E2-52BD6FD761FF}
+	EndGlobalSection
+EndGlobal
