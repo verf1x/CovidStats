@@ -10,7 +10,7 @@ namespace CovidStats.Services
     {
         private static HttpClient _httpClient = new();
 
-        public async Task<SummaryModel> GetData()
+        public async Task<StatsModel> GetData()
         {
             string request = "https://api.covid19api.com/summary";
 
@@ -19,7 +19,7 @@ namespace CovidStats.Services
             string responseBody = await response.Content.ReadAsStringAsync();
 
 #pragma warning disable CS8603 // Possible null reference return.
-            return JsonConvert.DeserializeObject<SummaryModel>(responseBody);
+            return JsonConvert.DeserializeObject<StatsModel>(responseBody);
 #pragma warning restore CS8603 // Possible null reference return.
         }
     }

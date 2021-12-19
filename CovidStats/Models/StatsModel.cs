@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CovidStats.Models
 {
-    internal class SummaryModel : ObservableObject
+    internal class StatsModel : ObservableObject
     {
         private IEnumerable<CountryModel>? _countries;
         public IEnumerable<CountryModel>? Countries{ get => _countries; set => Set(ref _countries, value, nameof(CountryModel)); }
