@@ -9,9 +9,11 @@
         Title="Covid Stats Application" 
         Height="600" Width="1000"
         Icon="/Resources/icon.ico">
+    
     <Window.Background>
         <ImageBrush ImageSource="/Resources/back.jpg"/>
     </Window.Background>
+
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
@@ -36,7 +38,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBox Grid.Column="0" Margin="15" BorderBrush="#000" Background="Transparent"
-                     BorderThickness="2" FontSize="25" Text="{Binding Path=Filter, UpdateSourceTrigger=PropertyChanged}">
+                     BorderThickness="1" FontSize="25" Text="{Binding Path=Filter, UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="12"/>
@@ -65,8 +67,12 @@
             </ListBox.ItemTemplate>
 
             <ListBox.Resources>
-                <Style TargetType="ScrollBar">
+                <Style TargetType="{x:Type ScrollBar}">
                     <Setter Property="Background" Value="#ffffff"/>
+                </Style>
+
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
                 </Style>
             </ListBox.Resources>
         </ListBox>
