@@ -11,7 +11,10 @@
         Icon="/Resources/icon.ico">
     
     <Window.Background>
-        <ImageBrush ImageSource="/Resources/back.jpg"/>
+        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,2.5">
+            <GradientStop Color="#FF6868" Offset="0.1" />
+            <GradientStop Color="#FF68DE" Offset="0.4" />
+            </LinearGradientBrush>
     </Window.Background>
 
     <Window.DataContext>
@@ -29,7 +32,7 @@
         </Grid.ColumnDefinitions>
 
         <Label Content="COVID-19 Stats" Grid.Column="0" HorizontalAlignment="Center"
-               Foreground="#000" FontSize="50" FontFamily="Roboto"/>
+               Foreground="#FFF" FontSize="50" FontFamily="Roboto"/>
 
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -37,8 +40,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Column="0" Margin="15" BorderBrush="#000" Background="Transparent"
-                     BorderThickness="1" FontSize="25" Text="{Binding Path=Filter, UpdateSourceTrigger=PropertyChanged}">
+            <TextBox Grid.Column="0" Margin="15" BorderBrush="#FFF" Background="Transparent"
+                     BorderThickness="0.5" FontSize="25" Text="{Binding Path=Filter, UpdateSourceTrigger=PropertyChanged}"
+                     Foreground="#FFF">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="12"/>
@@ -53,22 +57,23 @@
                     </Style>
                 </Button.Resources>
                 <Button.Background>
-                    <ImageBrush ImageSource="/Resources/refresh.png"/>
+                    <ImageBrush ImageSource="/Resources/whiteRefresh.png"/>
                 </Button.Background>
             </Button>
         </Grid>
 
         <ListBox Grid.Row="1" Margin="20" ItemsSource="{Binding Countries}" SelectedItem="{Binding SelectedCountry}" FontFamily="Roboto"
-                 BorderBrush="#000" Background="Transparent">
+                 BorderBrush="#FFF" Background="Transparent" BorderThickness="0.5">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock FontSize="20" Text="{Binding Country}" Background="Transparent" Foreground="#000"></TextBlock>
+                    <TextBlock FontSize="20" Text="{Binding Country}" Background="Transparent" Foreground="#FFF"></TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
 
             <ListBox.Resources>
                 <Style TargetType="{x:Type ScrollBar}">
-                    <Setter Property="Background" Value="#ffffff"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
                 </Style>
 
                 <Style TargetType="{x:Type Border}">
@@ -78,14 +83,14 @@
         </ListBox>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="20">
-            <TextBlock Text="{Binding Path=SelectedCountry.Country}" Margin="5" FontSize="45" FontFamily="Roboto" Foreground="#000"></TextBlock>
-            <TextBlock Text="{Binding Path=SelectedCountry.Slug, StringFormat=Slug: {0}}" Margin="5" FontSize="20" FontFamily="Roboto" Foreground="#000"></TextBlock>
-            <TextBlock Text="{Binding Path=SelectedCountry.NewConfirmed, StringFormat=New Cases Confirmed: {0}}" Foreground="Red" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
+            <TextBlock Text="{Binding Path=SelectedCountry.Country}" Margin="5" FontSize="45" FontFamily="Roboto" Foreground="#FFF"></TextBlock>
+            <TextBlock Text="{Binding Path=SelectedCountry.Slug, StringFormat=Slug: {0}}" Margin="5" FontSize="20" FontFamily="Roboto" Foreground="#FFF"></TextBlock>
+            <TextBlock Text="{Binding Path=SelectedCountry.NewConfirmed, StringFormat=New Cases Confirmed: {0}}" Foreground="#BB1312" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
             <TextBlock Text="{Binding Path=SelectedCountry.NewDeaths, StringFormat=New Deaths: {0}}" Foreground="#000" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
-            <TextBlock Text="{Binding Path=SelectedCountry.NewRecovered, StringFormat=New Cases Recovered: {0}}" Foreground="#257d1b" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
-            <TextBlock Text="{Binding Path=SelectedCountry.TotalConfirmed, StringFormat=Total Cases Confirmed: {0}}" Foreground="Red" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
+            <TextBlock Text="{Binding Path=SelectedCountry.NewRecovered, StringFormat=New Cases Recovered: {0}}" Foreground="#189B46" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
+            <TextBlock Text="{Binding Path=SelectedCountry.TotalConfirmed, StringFormat=Total Cases Confirmed: {0}}" Foreground="#BB1312" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
             <TextBlock Text="{Binding Path=SelectedCountry.TotalDeaths, StringFormat=Total Deaths: {0}}" Foreground="#000" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
-            <TextBlock Text="{Binding Path=SelectedCountry.TotalRecovered, StringFormat=Total Cases Recovered: {0}}" Foreground="#257d1b" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
+            <TextBlock Text="{Binding Path=SelectedCountry.TotalRecovered, StringFormat=Total Cases Recovered: {0}}" Foreground="#189B46" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
         </StackPanel>
     </Grid>
 </Window>
