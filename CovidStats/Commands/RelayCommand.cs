@@ -16,10 +16,14 @@ namespace CovidStats.Commands
 
         public event EventHandler? CanExecuteChanged { add => CommandManager.RequerySuggested += value; remove => CommandManager.RequerySuggested -= value; }
 
-        public Boolean CanExecute(Object? parameter) 
-            => _canExecute == null || _canExecute(parameter);
+        public Boolean CanExecute(Object? parameter)
+        {
+            return _canExecute == null || _canExecute(parameter);
+        }
 
-        public void Execute(Object? parameter) 
-            => _execute(parameter);
+        public void Execute(Object? parameter)
+        {
+            _execute(parameter);
+        }
     }
 }
