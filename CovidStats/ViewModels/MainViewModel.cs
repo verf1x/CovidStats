@@ -14,10 +14,27 @@ namespace CovidStats.ViewModels
 {
     internal class MainViewModel : BaseViewModel
     {
+        #region Ctor
+        public MainViewModel()
+        {
+            Task.Run(this.GetCollection).Wait();
+
+            _countriesView = CollectionViewSource.GetDefaultView(Countries);
+            _countriesView.Filter = o =>
+                String.IsNullOrEmpty(Filter) || ((CountryModel)o).Country.ToUpper().Contains(Filter.ToUpper());
+        }
+        #endregion
+
+
+        #region Private fields
+        private ICollectionView _countriesView;
+        #endregion
+
+
+        #region Props
         public ObservableCollection<CountryModel>? Countries { get; private set; }
 
         private CountryModel? _selectedCountry;
-
         public CountryModel? SelectedCountry
         {
             get => _selectedCountry;
@@ -25,7 +42,6 @@ namespace CovidStats.ViewModels
         }
 
         private ICommand? _updateCommand;
-
         public ICommand? UpdateCommand
         {
             get => _updateCommand ??= new RelayCommand(obj =>
@@ -35,12 +51,7 @@ namespace CovidStats.ViewModels
              });
         }
 
-        private IStatsService _serivce { get; set; }
-
-        private ICollectionView countriesView;
-
         private string _filter;
-
         public string Filter
         {
             get => _filter;
@@ -49,22 +60,15 @@ namespace CovidStats.ViewModels
                 if (value != _filter)
                 {
                     _filter = value;
-                    countriesView.Refresh();
+                    _countriesView.Refresh();
                     OnPropertyChanged(nameof(Filter));
                 }
             }
         }
+        #endregion
 
-        public MainViewModel()
-        {
-            Task.Run(this.GetCollection).Wait();
 
-            countriesView = CollectionViewSource.GetDefaultView(Countries);
-            countriesView.Filter = o =>
-                String.IsNullOrEmpty(Filter) || ((CountryModel)o).Country.ToUpper().Contains(Filter.ToUpper());
-
-        }
-
+        #region Methods
         private async Task GetCollection()
         {
             var serivce = new StatsService();
@@ -73,5 +77,6 @@ namespace CovidStats.ViewModels
 
             Countries = new ObservableCollection<CountryModel>(countries.Where(x => !string.IsNullOrWhiteSpace(x.Country)));
         }
+        #endregion
     }
 }

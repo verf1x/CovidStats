@@ -12,14 +12,11 @@
     
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,2.5">
-            <GradientStop Color="#FF6868" Offset="0.1" />
-            <GradientStop Color="#FF68DE" Offset="0.4" />
+            <GradientStop Color="#fc0388" Offset="-0.2" />
+            <GradientStop Color="#fc9003" Offset="0.4" />
             </LinearGradientBrush>
     </Window.Background>
 
-    <Window.DataContext>
-        <vm:MainViewModel/>
-    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

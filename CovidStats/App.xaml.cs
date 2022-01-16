@@ -6,9 +6,9 @@ namespace CovidStats
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public sealed partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
+        protected sealed override void OnStartup(StartupEventArgs e)
         {
             var main = new MainWindow();
             main.DataContext = new MainViewModel();

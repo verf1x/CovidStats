@@ -3,6 +3,7 @@ using CovidStats.Interfaces;
 using CovidStats.Models;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System;
 
 namespace CovidStats.Services
 {
@@ -12,11 +13,11 @@ namespace CovidStats.Services
 
         public async Task<StatsModel> GetData()
         {
-            string request = "https://api.covid19api.com/summary";
+            String request = "https://api.covid19api.com/summary";
 
             HttpResponseMessage response = (await _httpClient.GetAsync(request)).EnsureSuccessStatusCode();
 
-            string responseBody = await response.Content.ReadAsStringAsync();
+            String responseBody = await response.Content.ReadAsStringAsync();
 
 #pragma warning disable CS8603 // Possible null reference return.
             return JsonConvert.DeserializeObject<StatsModel>(responseBody);
