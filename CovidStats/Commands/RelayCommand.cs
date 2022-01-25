@@ -14,7 +14,11 @@ namespace CovidStats.Commands
         private readonly Action<Object>? _execute;
         private readonly Predicate<Object>? _canExecute;
 
-        public event EventHandler? CanExecuteChanged { add => CommandManager.RequerySuggested += value; remove => CommandManager.RequerySuggested -= value; }
+        public event EventHandler? CanExecuteChanged 
+        { 
+            add => CommandManager.RequerySuggested += value; 
+            remove => CommandManager.RequerySuggested -= value; 
+        }
 
         public Boolean CanExecute(Object? parameter)
         {
