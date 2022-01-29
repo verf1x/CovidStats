@@ -5,19 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CovidStats"
         xmlns:vm="clr-namespace:CovidStats.ViewModels"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="#00b7ff"
+     FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
         Title="Covid Stats Application" 
         Height="600" Width="1000"
         Icon="/Resources/icon.ico">
-    
-    <Window.Background>
-        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,2.5">
-            <GradientStop Color="#fc0388" Offset="-0.2" />
-            <GradientStop Color="#fc9003" Offset="0.4" />
-            </LinearGradientBrush>
-    </Window.Background>
-
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -29,7 +30,7 @@
         </Grid.ColumnDefinitions>
 
         <Label Content="COVID-19 Stats" Grid.Column="0" HorizontalAlignment="Center"
-               Foreground="#FFF" FontSize="50" FontFamily="Roboto"/>
+               Foreground="#fff" FontSize="50" FontFamily="Roboto"/>
 
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -37,57 +38,61 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Column="0" Margin="15" BorderBrush="#FFF" Background="Transparent"
-                     BorderThickness="0.5" FontSize="25" Text="{Binding Path=Filter, UpdateSourceTrigger=PropertyChanged}"
-                     Foreground="#FFF">
-                <TextBox.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="12"/>
-                    </Style>
-                </TextBox.Resources>
-            </TextBox>
+            <materialDesign:Card Grid.Column="0" Margin="20" Background="#00b7ff">
+                <TextBox Background="Transparent"
+                     FontSize="25" Text="{Binding Path=Filter, UpdateSourceTrigger=PropertyChanged}"
+                     Foreground="#000">
+                </TextBox>
+            </materialDesign:Card>
 
-            <Button Width="50" Height="50" Grid.Column="1" BorderBrush="Transparent" Command="{Binding UpdateCommand}">
-                <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="100"/>
-                    </Style>
-                </Button.Resources>
-                <Button.Background>
-                    <ImageBrush ImageSource="/Resources/whiteRefresh.png"/>
-                </Button.Background>
-            </Button>
+
+            <materialDesign:Card Grid.Column="1" Width="50" Height="50" Background="#00b7ff" Margin="55,15,20,14">
+                <Button Width="50" Height="50" BorderBrush="Transparent" Command="{Binding UpdateCommand}" Margin="2,0,-2,0">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="100"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Resources/whiteRefresh.png"/>
+                    </Button.Background>
+                </Button>
+            </materialDesign:Card>
         </Grid>
 
-        <ListBox Grid.Row="1" Margin="20" ItemsSource="{Binding Countries}" SelectedItem="{Binding SelectedCountry}" FontFamily="Roboto"
-                 BorderBrush="#FFF" Background="Transparent" BorderThickness="0.5">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock FontSize="20" Text="{Binding Country}" Background="Transparent" Foreground="#FFF"></TextBlock>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
+        <materialDesign:Card Grid.Row="1" Margin="20" Background="#00b7ff">
+            <ListBox ItemsSource="{Binding Countries}" SelectedItem="{Binding SelectedCountry}" FontFamily="Roboto" Background="Transparent">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock FontSize="20" Text="{Binding Country}" Background="Transparent" Foreground="#fff"></TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
 
-            <ListBox.Resources>
-                <Style TargetType="{x:Type ScrollBar}">
-                    <Setter Property="Background" Value="Transparent"/>
-                    <Setter Property="BorderThickness" Value="0"/>
-                </Style>
+                <ListBox.Resources>
+                    <Style TargetType="{x:Type ScrollBar}">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                    </Style>
 
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="10"/>
-                </Style>
-            </ListBox.Resources>
-        </ListBox>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </ListBox.Resources>
+            </ListBox>
+        </materialDesign:Card>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" Margin="20">
-            <TextBlock Text="{Binding Path=SelectedCountry.Country}" Margin="5" FontSize="45" FontFamily="Roboto" Foreground="#FFF"></TextBlock>
-            <TextBlock Text="{Binding Path=SelectedCountry.Slug, StringFormat=Slug: {0}}" Margin="5" FontSize="20" FontFamily="Roboto" Foreground="#FFF"></TextBlock>
-            <TextBlock Text="{Binding Path=SelectedCountry.NewConfirmed, StringFormat=New Cases Confirmed: {0}}" Foreground="#BB1312" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
-            <TextBlock Text="{Binding Path=SelectedCountry.NewDeaths, StringFormat=New Deaths: {0}}" Foreground="#000" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
-            <TextBlock Text="{Binding Path=SelectedCountry.NewRecovered, StringFormat=New Cases Recovered: {0}}" Foreground="#189B46" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
-            <TextBlock Text="{Binding Path=SelectedCountry.TotalConfirmed, StringFormat=Total Cases Confirmed: {0}}" Foreground="#BB1312" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
-            <TextBlock Text="{Binding Path=SelectedCountry.TotalDeaths, StringFormat=Total Deaths: {0}}" Foreground="#000" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
-            <TextBlock Text="{Binding Path=SelectedCountry.TotalRecovered, StringFormat=Total Cases Recovered: {0}}" Foreground="#189B46" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
-        </StackPanel>
+
+        <materialDesign:Card Grid.Row="1" Grid.Column="1" Margin="20" Background="#00b7ff">
+            <StackPanel>
+                <TextBlock Text="{Binding Path=SelectedCountry.Country}" Margin="5" FontSize="45" FontFamily="Roboto" Foreground="#FFF"></TextBlock>
+                <TextBlock Text="{Binding Path=SelectedCountry.Slug, StringFormat=Slug: {0}}" Margin="5" FontSize="20" FontFamily="Roboto" Foreground="#FFF"></TextBlock>
+                <TextBlock Text="{Binding Path=SelectedCountry.NewConfirmed, StringFormat=New Cases Confirmed: {0}}" Foreground="#BB1312" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
+                <TextBlock Text="{Binding Path=SelectedCountry.NewDeaths, StringFormat=New Deaths: {0}}" Foreground="#000" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
+                <TextBlock Text="{Binding Path=SelectedCountry.NewRecovered, StringFormat=New Cases Recovered: {0}}" Foreground="#04ff00" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
+                <TextBlock Text="{Binding Path=SelectedCountry.TotalConfirmed, StringFormat=Total Cases Confirmed: {0}}" Foreground="#BB1312" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
+                <TextBlock Text="{Binding Path=SelectedCountry.TotalDeaths, StringFormat=Total Deaths: {0}}" Foreground="#000" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
+                <TextBlock Text="{Binding Path=SelectedCountry.TotalRecovered, StringFormat=Total Cases Recovered: {0}}" Foreground="#04ff00" Margin="5" FontSize="20" FontFamily="Roboto"></TextBlock>
+            </StackPanel>
+        </materialDesign:Card>
     </Grid>
 </Window>
